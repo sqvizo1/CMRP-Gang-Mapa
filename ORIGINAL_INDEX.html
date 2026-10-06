@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMRP Územie By Sqvizy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <h1>CMRP Gang / MC Mapa</h1>
+      <p class="muted">Scroll = zoom, drž myš = pohyb mapou.</p>
+
+      <button id="adminBtn" class="primary">Admin</button>
+
+      <div id="loginBox" class="panel hidden">
+        <h2>Admin prihlásenie</h2>
+        <input id="username" placeholder="Meno" autocomplete="username" />
+        <input id="password" type="password" placeholder="Heslo" autocomplete="current-password" />
+        <button id="loginBtn">Prihlásiť</button>
+        <p id="loginError" class="error"></p>
+        <p class="hint">Prihlásenie je overované cez server, údaje už nie sú v script.js.</p>
+      </div>
+
+      <div id="adminPanel" class="panel hidden">
+        <h2>Admin nástroje</h2>
+        <button id="territoryModeBtn">Pridať územie</button>
+        <button id="workshopModeBtn">Pridať Motorcycle Club</button>
+        <button id="editTerritoryModeBtn">Upraviť územie</button>
+        <button id="editWorkshopModeBtn">Upraviť Motorcycle Club</button>
+        <button id="eraserModeBtn" class="danger">Guma</button>
+        <button id="cancelModeBtn" class="secondary">Zrušiť režim</button>
+        <button id="clearBtn" class="danger">Vymazať všetko</button>
+      </div>
+
+      <div id="territoryForm" class="panel hidden">
+        <h2>Nové územie</h2>
+        <p class="hint">Podrž ľavé tlačidlo myši a nakresli obvod územia priamo na mape. Po pustení myši sa tvar vyplní.</p>
+        <input id="territoryText" placeholder="Názov gangu / text" />
+        <label>Farba územia <input id="territoryColor" type="color" value="#ff2b2b" /></label>
+        <button id="saveTerritoryBtn">Uložiť územie</button>
+      </div>
+
+      <div id="eraserForm" class="panel hidden">
+        <h2>Guma</h2>
+        <p class="hint">Klikni priamo na územie alebo Motorcycle Club, ktorý chceš vymazať. Vymaže sa iba označená vec.</p>
+      </div>
+
+      <div id="workshopForm" class="panel hidden">
+        <h2>Nový Motorcycle Club</h2>
+        <p class="hint">Klikni na miesto na mape, kde má byť ikonka.</p>
+        <input id="workshopText" placeholder="Názov Motorcycle Clubu" />
+        <label>Farba ikonky <input id="workshopColor" type="color" value="#00b7ff" /></label>
+        <button id="saveWorkshopBtn">Uložiť Motorcycle Club</button>
+      </div>
+
+
+
+      <div id="editTerritoryForm" class="panel hidden">
+        <h2>Upraviť územie</h2>
+        <p class="hint">Klikni na územie. Potom môžeš zmeniť názov, farbu, priehľadnosť alebo ho chytiť a presunúť.</p>
+        <input id="editTerritoryText" placeholder="Názov územia" />
+        <label>Farba územia <input id="editTerritoryColor" type="color" value="#ff2b2b" /></label>
+        <label>Priehľadnosť <input id="editTerritoryOpacity" type="range" min="0.1" max="0.85" step="0.05" value="0.45" /></label>
+        <button id="saveEditTerritoryBtn">Uložiť územie</button>
+      </div>
+
+      <div id="editWorkshopForm" class="panel hidden">
+        <h2>Upraviť Motorcycle Club</h2>
+        <p class="hint">Klikni na blip. Následne ho môžeš chytiť myšou a presunúť alebo zmeniť názov/farbu.</p>
+        <input id="editWorkshopText" placeholder="Názov Motorcycle Clubu" />
+        <label>Farba blipu <input id="editWorkshopColor" type="color" value="#00b7ff" /></label>
+        <button id="saveEditWorkshopBtn">Uložiť Motorcycle Club</button>
+      </div>
+
+      <div id="playerListPanel" class="panel player-panel">
+        <h2>Zoznam aktívnych miest</h2>
+        <p class="hint">Klikni na územie alebo Motorcycle Club a mapa ťa tam presunie.</p>
+        <div id="playerList" class="player-list"></div>
+      </div>
+    </aside>
+
+    <main id="mapViewport">
+      <div id="mapWorld">
+        <img id="mapImage" src="gta-map-satellite.jpg" alt="GTA V satelitná mapa" />
+        <svg id="overlay"></svg>
+        <div id="markers"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="tooltip" class="tooltip hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
